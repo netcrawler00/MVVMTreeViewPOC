@@ -1,0 +1,46 @@
+﻿<Window x:Class="TreeViewPOC.Gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TreeViewPOC.Gui"
+        xmlns:model="clr-namespace:TreeViewPOC.Model"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525"
+        d:DataContext="{d:DesignData Source=MainWindowSampleData.xaml}">
+  <Window.Resources>
+    <local:TreeViewItemModelToViewModelConverter x:Key="TreeViewItemModelToViewModelConverter"/>
+  </Window.Resources>
+  <Window.DataContext>
+    <local:MainWindowModel />
+  </Window.DataContext>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/><!-- space dedicated to comments, not used yet.-->
+      <RowDefinition/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    
+    <!-- The TreeView that will suffer all my experiments... -->
+    <TreeView x:Name="treeView" Grid.Row="1" ItemsSource="{Binding Root.Constellations}">
+      <TreeView.Resources>
+        <HierarchicalDataTemplate DataType="{x:Type model:Constellation }">
+          <TextBlock 
+            DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource TreeViewItemModelToViewModelConverter}}"
+            Text="{Binding Name}">
+          </TextBlock>
+        </HierarchicalDataTemplate>
+      </TreeView.Resources>
+    </TreeView>
+    
+    <!-- Bottom buttons -->
+    <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" FlowDirection="RightToLeft">
+      <Button x:Name="exitButton" Content="Exit" Width="70" Margin="5" Click="exitButton_Click"/>
+    </StackPanel>
+
+  </Grid>
+</Window>

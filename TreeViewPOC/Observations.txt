@@ -1,0 +1,4 @@
+This file gathers my thoughts and experiments outcome as the project progresses.
+
+1) The model must implement INotifyProperty to notify the GUI if properties are directly linked. Might work if notifications (and thus properties) are managed by the ViewModel
+2) In order to manage collections events, the model collections MUST be observable. 

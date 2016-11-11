@@ -1,0 +1,13 @@
+﻿<MainWindowModel
+  xmlns="clr-namespace:TreeViewPOC.Gui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:model="clr-namespace:TreeViewPOC.Model"
+  xmlns:col="System.Collections.ObjectModel">
+  <MainWindowModel.Root>
+    <model:RootObject>
+      <model:RootObject.Constellations>
+        <model:Constellation Name="Constellation1"/>
+      </model:RootObject.Constellations>
+    </model:RootObject>
+  </MainWindowModel.Root>
+</MainWindowModel>
