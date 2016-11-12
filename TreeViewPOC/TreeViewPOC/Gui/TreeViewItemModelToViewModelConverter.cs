@@ -19,6 +19,12 @@ namespace TreeViewPOC.Gui
         vm.Constellation = value;
         return value;
       }
+      else if (value is Entity)
+      {
+        var vm = new EntityTreeViewModel();
+        vm.Entity = value;
+        return value;
+      }
 
       return Binding.DoNothing;
     }

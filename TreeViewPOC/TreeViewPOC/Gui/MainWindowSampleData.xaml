@@ -6,7 +6,12 @@
   <MainWindowModel.Root>
     <model:RootObject>
       <model:RootObject.Constellations>
-        <model:Constellation Name="Constellation1"/>
+        <model:Constellation Name="Constellation1">
+          <model:Constellation.Entities>
+            <model:Entity />
+          </model:Constellation.Entities>
+        </model:Constellation>
+        <model:Constellation Name="Constellation2"/>
       </model:RootObject.Constellations>
     </model:RootObject>
   </MainWindowModel.Root>

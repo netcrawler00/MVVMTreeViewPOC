@@ -21,9 +21,12 @@ namespace TreeViewPOC.Model
     /// <summary>
     /// I told you it was god
     /// </summary>
-    public void MakeUniverse()
+    public void CreateUniverse()
     {
       var constellation = new Constellation() { Name = "Andromeda" };
+      constellation.Entities.Add(new Entity() { Name = "Alphératz" });
+      constellation.Entities.Add(new Entity() { Name = "Mirach" });
+      constellation.Entities.Add(new Entity() { Name = "Almach" });
       Constellations.Add(constellation);
 
       constellation = new Constellation() { Name = "Centaurus" };

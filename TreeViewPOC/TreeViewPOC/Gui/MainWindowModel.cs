@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Practices.Prism.Commands;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TreeViewPOC.Model;
 
 namespace TreeViewPOC.Gui
@@ -11,6 +13,13 @@ namespace TreeViewPOC.Gui
   public class MainWindowModel : ObservableObject
   {
     private RootObject _root;
+
+    public MainWindowModel()
+    {
+      ExitAppCommand = new DelegateCommand(OnExitApp) { IsActive = true };
+      CreateUniverseCommand = new DelegateCommand(OnCreateUniverse, CanCreateUniverse) { IsActive = true };
+      Root = new Model.RootObject();
+    }
 
     public RootObject Root
     {
@@ -21,23 +30,44 @@ namespace TreeViewPOC.Gui
       set
       {
         // no crap
-        if(value == null)
+        if (value == null)
         {
           throw new ArgumentNullException(nameof(Root));
         }
         // real change
-        else if(!value.Equals(_root))
+        else if (!value.Equals(_root))
         {
           _root = value;
           NotifyPropertyChanged();
-          NotifyPropertyChanged(nameof(Constellations));
         }
       }
     }
 
-    /// <summary>
-    /// Gives direct access to the constellations (may be useless)
-    /// </summary>
-    public ObservableCollection<Constellation> Constellations => _root.Constellations;
+    #region CreateUniverseCommand
+    public DelegateCommand CreateUniverseCommand { get; }
+
+    private bool CanCreateUniverse()
+    {
+      return _root.Constellations.Count == 0;
+    }
+
+    private void OnCreateUniverse()
+    {
+      _root.CreateUniverse();
+      CreateUniverseCommand.RaiseCanExecuteChanged();
+    }
+    #endregion
+
+    #region ExitAppCommand
+    public DelegateCommand ExitAppCommand { get; }
+
+    private void OnExitApp()
+    {
+      Application.Current.Shutdown();
+    }
+
+    #endregion
+
+
   }
 }

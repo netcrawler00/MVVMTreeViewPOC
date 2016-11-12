@@ -34,7 +34,7 @@ namespace TreeViewPOC.Gui
         (this.DataContext as MainWindowModel).Root = new Model.RootObject();
       }
       
-      (this.DataContext as MainWindowModel)?.Root.MakeUniverse();
+      (this.DataContext as MainWindowModel)?.Root.CreateUniverse();
     }
   }
 }

@@ -28,18 +28,35 @@
     <!-- The TreeView that will suffer all my experiments... -->
     <TreeView x:Name="treeView" Grid.Row="1" ItemsSource="{Binding Root.Constellations}">
       <TreeView.Resources>
-        <HierarchicalDataTemplate DataType="{x:Type model:Constellation }">
+        <!--HierarchicalDataTemplate DataType="{x:Type model:Constellation }" ItemsSource="{Binding Entities}">
           <TextBlock 
-            DataContext="{Binding DataContext, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource TreeViewItemModelToViewModelConverter}}"
+            DataContext="{Binding Converter={StaticResource TreeViewItemModelToViewModelConverter}}"
+            Text="{Binding Name}">
+          </TextBlock>
+        </-->
+        <HierarchicalDataTemplate DataType="{x:Type model:Constellation }" ItemsSource="{Binding Entities}">
+          <TextBlock 
+            DataContext="{Binding Converter={StaticResource TreeViewItemModelToViewModelConverter}}"
+            Text="{Binding Name}">
+          </TextBlock>
+        </HierarchicalDataTemplate>
+        <HierarchicalDataTemplate DataType="{x:Type model:Entity }" ItemsSource="{Binding Entities}">
+          <TextBlock 
+            DataContext="{Binding Converter={StaticResource TreeViewItemModelToViewModelConverter}}"
             Text="{Binding Name}">
           </TextBlock>
         </HierarchicalDataTemplate>
       </TreeView.Resources>
     </TreeView>
     
+    <!-- The buttons that perform actions on the TreeView -->
+    <StackPanel Grid.Column="1" Grid.Row="1">
+      <Button Content="Create Universe" Command="{Binding CreateUniverseCommand}" Margin="5"/>
+    </StackPanel>
+    
     <!-- Bottom buttons -->
     <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" FlowDirection="RightToLeft">
-      <Button x:Name="exitButton" Content="Exit" Width="70" Margin="5" Click="exitButton_Click"/>
+      <Button x:Name="exitButton" Content="Exit" Width="70" Margin="5" Command="{Binding ExitAppCommand}"/>
     </StackPanel>
 
   </Grid>
