@@ -10,6 +10,8 @@
 
     public object Constellation { get; internal set; }
 
+    public string FontWeight { get; } = "Bold";
+
     public bool IsSelected
     {
       get

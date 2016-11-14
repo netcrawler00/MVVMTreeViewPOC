@@ -17,13 +17,13 @@ namespace TreeViewPOC.Gui
       {
         var vm = new ConstellationTreeViewModel();
         vm.Constellation = value;
-        return value;
+        return vm;
       }
       else if (value is Entity)
       {
         var vm = new EntityTreeViewModel();
         vm.Entity = value;
-        return value;
+        return vm;
       }
 
       return Binding.DoNothing;
