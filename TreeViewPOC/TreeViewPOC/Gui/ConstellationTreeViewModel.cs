@@ -1,14 +1,41 @@
-﻿namespace TreeViewPOC.Gui
+﻿using System;
+using System.Collections.ObjectModel;
+using TreeViewPOC.Model;
+
+namespace TreeViewPOC.Gui
 {
-  internal class ConstellationTreeViewModel : ObservableObject
+  public class ConstellationTreeViewModel : ObservableObject
   {
+    private ConvertingCollection<Entity, EntityTreeViewModel> _convertedEntities
+      = new ConvertingCollection<Entity, EntityTreeViewModel>(new TreeViewItemModelToViewModelConverter());
     private bool _isSelected;
+    private Constellation _constellation;
 
     public ConstellationTreeViewModel()
     {
     }
 
-    public object Constellation { get; internal set; }
+    public Constellation Constellation {
+      get
+      {
+        return _constellation;
+      }
+      set
+      {
+        // no crap
+        if (value == null)
+        {
+          throw new ArgumentNullException(nameof(Constellation));
+        }
+        // real change
+        else if (!value.Equals(_constellation))
+        {
+          _constellation = value;
+          NotifyPropertyChanged();
+          _convertedEntities.OriginalCollection = _constellation.Entities;
+        }
+      }
+    }
 
     public string FontWeight { get; } = "Bold";
 
@@ -26,7 +53,9 @@
           NotifyPropertyChanged();
         }
       }
-
     }
+
+    public ObservableCollection<EntityTreeViewModel> Entities => _convertedEntities;
+
   }
 }

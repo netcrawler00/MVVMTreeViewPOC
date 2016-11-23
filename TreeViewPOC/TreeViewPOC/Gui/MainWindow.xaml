@@ -27,22 +27,27 @@
     </Grid.RowDefinitions>
 
     <!-- The TreeView that will suffer all my experiments... -->
-    <TreeView x:Name="treeView" Grid.Row="1" ItemsSource="{Binding Root.Constellations}">
+    <TreeView x:Name="treeView" Grid.Row="1" ItemsSource="{Binding RootVM.Constellations}" >
       <TreeView.Resources>
+        <!-- binding for all treeviewitems -->
+        <Style TargetType="{x:Type TreeViewItem}">
+          <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+          <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+        </Style>
+        
+        <!-- Data templates for constellations -->
         <HierarchicalDataTemplate 
-          DataType="{x:Type model:Constellation }" 
+          DataType="{x:Type local:ConstellationTreeViewModel }" 
           ItemsSource="{Binding Entities}" >
           <TextBlock 
-            DataContext="{Binding Converter={StaticResource TreeViewItemModelToViewModelConverter}}"            
-            Text="{Binding Constellation.Name}"
-            FontWeight="{Binding FontWeight}">
+            Text="{Binding Constellation.Name}">
           </TextBlock>
         </HierarchicalDataTemplate>
+
         <HierarchicalDataTemplate 
-          DataType="{x:Type model:Entity }" 
+          DataType="{x:Type local:EntityTreeViewModel}" 
           ItemsSource="{Binding Entities}">
           <TextBlock 
-            DataContext="{Binding Converter={StaticResource TreeViewItemModelToViewModelConverter}}"
             Text="{Binding Entity.Name}">
           </TextBlock>
         </HierarchicalDataTemplate>
@@ -52,6 +57,7 @@
     <!-- The buttons that perform actions on the TreeView -->
     <StackPanel Grid.Column="1" Grid.Row="1">
       <Button Content="Create Universe" Command="{Binding CreateUniverseCommand}" Margin="5"/>
+      <Button Content="Breakpoint" Command="{Binding JustABreakpointCommand}" Margin="5"/>
     </StackPanel>
 
     <!-- Bottom buttons -->

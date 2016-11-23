@@ -75,6 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ConvertingCollection.cs" />
     <Compile Include="Gui\ConstellationTreeViewModel.cs" />
     <Compile Include="Gui\EntityTreeViewModel.cs" />
     <Compile Include="Gui\MainWindow.xaml.cs">
@@ -84,10 +85,14 @@
     <Page Include="Gui\MainWindowSampleData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gui\MainWindowModel.cs" />
+    <Compile Include="Gui\MainWindowModel.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\RootViewModel.cs" />
     <Compile Include="Gui\TreeViewItemModelToViewModelConverter.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\RootObject.cs" />

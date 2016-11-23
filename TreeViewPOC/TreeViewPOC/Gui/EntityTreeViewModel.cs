@@ -1,11 +1,13 @@
-﻿namespace TreeViewPOC.Gui
+﻿using TreeViewPOC.Model;
+
+namespace TreeViewPOC.Gui
 {
-  internal class EntityTreeViewModel
+  public class EntityTreeViewModel
   {
     public EntityTreeViewModel()
     {
     }
 
-    public object Entity { get; internal set; }
+    public Entity Entity { get; internal set; }
   }
 }

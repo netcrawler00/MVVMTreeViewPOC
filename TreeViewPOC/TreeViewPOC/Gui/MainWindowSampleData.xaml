@@ -3,16 +3,21 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:model="clr-namespace:TreeViewPOC.Model"
   xmlns:col="System.Collections.ObjectModel">
-  <MainWindowModel.Root>
-    <model:RootObject>
-      <model:RootObject.Constellations>
-        <model:Constellation Name="Constellation1">
-          <model:Constellation.Entities>
-            <model:Entity />
-          </model:Constellation.Entities>
-        </model:Constellation>
-        <model:Constellation Name="Constellation2"/>
-      </model:RootObject.Constellations>
-    </model:RootObject>
-  </MainWindowModel.Root>
+  <MainWindowModel.RootVM>
+    <RootViewModel>
+      <RootViewModel.Root>
+
+        <model:RootObject>
+          <model:RootObject.Constellations>
+            <model:Constellation Name="Constellation1">
+              <model:Constellation.Entities>
+                <model:Entity />
+              </model:Constellation.Entities>
+            </model:Constellation>
+            <model:Constellation Name="Constellation2"/>
+          </model:RootObject.Constellations>
+        </model:RootObject>
+      </RootViewModel.Root>
+    </RootViewModel>
+  </MainWindowModel.RootVM>
 </MainWindowModel>

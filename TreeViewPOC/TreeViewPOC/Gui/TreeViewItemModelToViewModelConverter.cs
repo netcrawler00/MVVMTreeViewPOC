@@ -16,13 +16,13 @@ namespace TreeViewPOC.Gui
       if(value is Constellation)
       {
         var vm = new ConstellationTreeViewModel();
-        vm.Constellation = value;
+        vm.Constellation = value as Constellation;
         return vm;
       }
       else if (value is Entity)
       {
         var vm = new EntityTreeViewModel();
-        vm.Entity = value;
+        vm.Entity = value as Entity;
         return vm;
       }
 
